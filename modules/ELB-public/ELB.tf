@@ -1,4 +1,4 @@
-resource "aws_lb" "elb-private" {
+resource "aws_lb" "elb-public" {
   name               = "ELB-public"
   internal           = false
   load_balancer_type = "application"
@@ -12,7 +12,7 @@ resource "aws_lb" "elb-private" {
   }
 }
 resource "aws_lb_listener" "my_alb_listener" {
- load_balancer_arn = aws_lb.elb-private.arn
+ load_balancer_arn = aws_lb.elb-public.arn
  port              = "80"
  protocol          = "HTTP"
 
@@ -22,7 +22,7 @@ resource "aws_lb_listener" "my_alb_listener" {
  }
 }
 resource "aws_lb_target_group" "targetgroup" {
-  name     = "target-group-private"
+  name     = "target-group-public"
   port     = 80
   protocol = "HTTP"
   vpc_id   = var.vpc_id
