@@ -1,2 +1,5 @@
 
 **/.terraform/providers/**
+# Ignore terraform provider executables
+*.exe
+
